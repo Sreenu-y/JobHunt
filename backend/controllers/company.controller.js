@@ -1,4 +1,6 @@
 import { Company } from "../models/Company.model.js";
+import cloudinary from "../utils/Cloudinary.js";
+import getDataUri from "../utils/datauri.js";
 
 export const registerCompany = async (req, res) => {
   try {
@@ -26,6 +28,7 @@ export const registerCompany = async (req, res) => {
     return res.status(201).json({
       // if something created we use 201 status code
       message: "Company registered successfully.",
+      company,
       success: true,
     });
   } catch (error) {
@@ -79,8 +82,20 @@ export const updateCompany = async (req, res) => {
     const { name, description, website, location } = req.body;
     const file = req.file;
     //cloudinary
+    let logo;
+    if (file) {
+      const fileUri = getDataUri(file);
+      const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+      logo = cloudResponse.secure_url;
+    }
 
-    const updatedData = { name, description, website, location };
+    const updatedData = {
+      name,
+      description,
+      website,
+      location,
+      ...(logo && { logo }),
+    };
     const company = await Company.findByIdAndUpdate(companyId, updatedData, {
       new: true,
     });
