@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
-import { data } from "react-router-dom";
 import { Label } from "./ui/label";
+import { useDispatch } from "react-redux";
+import { setSearchQuery } from "@/redux/jobSlice";
 
 const filterData = [
   {
     filterType: "Location",
-    array: ["Delhi NCR", "Bangalore", "Hyderabad", "Pune", "Mumbai"],
+    array: ["Delhi NCR", "Bangalore", "Hyderabad", "Pune", "Mumbai", "Noida"],
   },
   {
     filterType: "Industry",
@@ -15,28 +16,42 @@ const filterData = [
       "Backend Developer",
       "FullStack Developer",
       "Software Developer",
+      "Software Engineer",
       "Devops",
     ],
   },
   {
-    filterType: "Salary",
-    array: ["0-40k", "42k-1Lakh", "1Lakh-5Lakh"],
+    filterType: "Job Type",
+    array: ["Full-Time", "Part-Time", "Remote"],
   },
 ];
 
 const FilterCard = () => {
+  const dispatch = useDispatch();
+  const [selectedValue, setSelectedValue] = useState("");
+  const handleChange = (value) => {
+    setSelectedValue(value);
+  };
+
+  useEffect(() => {
+    dispatch(setSearchQuery(selectedValue));
+  }, [selectedValue, dispatch]);
+
   return (
     <div className="w-full bg-white p-3 rounded-md">
       <h1 className="font-bold text-lg">Filter Jobs</h1>
       <hr className="mt-3" />
-      <RadioGroup>
+      <RadioGroup value={selectedValue} onValueChange={handleChange}>
         {filterData.map((item, idx) => {
           return (
-            <div>
+            <div key={`filter-${idx}`}>
               <h1 className="font-bold text-lg">{item.filterType}</h1>
               {item.array.map((option, index) => {
                 return (
-                  <div className="flex items-center space-x-2 my-2">
+                  <div
+                    key={`${item.filterType}-${index}`}
+                    className="flex items-center space-x-2 my-2"
+                  >
                     <RadioGroupItem
                       id={`${item.filterType}-${index}`}
                       value={option}

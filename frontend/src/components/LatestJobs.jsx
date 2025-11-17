@@ -1,7 +1,6 @@
 import React from "react";
 import LatestJobCard from "./LatestJobCard";
 import { useSelector } from "react-redux";
-import store from "@/redux/store";
 
 const LatestJobs = () => {
   const { allJobs } = useSelector((store) => store.jobs);

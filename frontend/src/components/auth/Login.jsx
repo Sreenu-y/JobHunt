@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../shared/Navbar";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
@@ -13,7 +13,7 @@ import { setLoading, setUser } from "@/redux/authSlice";
 import { Loader2 } from "lucide-react";
 
 const Login = () => {
-  const { loading } = useSelector((store) => store.auth);
+  const { loading, user } = useSelector((store) => store.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
@@ -49,6 +49,12 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, []);
+
   return (
     <div>
       <Navbar />
@@ -66,7 +72,7 @@ const Login = () => {
               name="email"
               value={input.email}
               onChange={changeEventHandler}
-              placeholder="Eg. sreenuyelesam@gmail.com"
+              placeholder="example@gmail.com"
               id="email"
             />
           </div>
@@ -78,7 +84,7 @@ const Login = () => {
               name="password"
               value={input.password}
               onChange={changeEventHandler}
-              placeholder="Eg. *******"
+              placeholder="example@1234"
               id="password"
             />
           </div>

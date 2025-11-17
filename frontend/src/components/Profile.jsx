@@ -6,16 +6,13 @@ import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { Label } from "@radix-ui/react-label";
 import AppliedJobTable from "./AppliedJobTable";
-import { useNavigate } from "react-router-dom";
 import UpdateProfileDialog from "./UpdateProfileDialog";
 import { useSelector } from "react-redux";
-import store from "@/redux/store";
-
-const skills = ["Java", "Python", "JavaScript", "MERN"];
+import useGetAppliedJobs from "@/hooks/useGetAppliedJobs";
 
 const Profile = () => {
+  useGetAppliedJobs();
   const [open, setOpen] = useState(false);
-
   const { user } = useSelector((store) => store.auth);
   const isResume = true;
 

@@ -109,7 +109,7 @@ const JobDescription = () => {
           <h1 className="font-bold my-1">
             Role:
             <span className="pl-4 font-normal text-gray-800">
-              {singleJob?.role}
+              {singleJob?.title}
             </span>
           </h1>
           <h1 className="font-bold my-1">
