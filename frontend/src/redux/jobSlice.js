@@ -12,7 +12,6 @@ const jobSlice = createSlice({
   },
   reducers: {
     setAllJobs: (state, action) => {
-      console.log("setAllJobs called with:", action.payload); // ✅ add this log
       state.allJobs = action.payload;
     },
     setSingleJob: (state, action) => {
