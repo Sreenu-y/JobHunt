@@ -63,7 +63,7 @@ const Job = ({ job }) => {
       </div>
       <div className="flex items-center gap-4 mt-4">
         <Button variant="outline" className="cursor-pointer">
-          <Link to={`description/${job._id}`}>Details</Link>
+          <Link to={`/jobs/description/${job._id}`}>Details</Link>
         </Button>
         <Button className="bg-[#6a38c2] hover:bg-[#5a10d8] cursor-pointer">
           Save For Later

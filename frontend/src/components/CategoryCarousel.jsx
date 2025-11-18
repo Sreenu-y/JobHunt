@@ -12,13 +12,16 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 const category = [
-  "Frontend Developer",
-  "Backend Developer",
+  "Frontend Engineer",
+  "Software Engineer",
+  "Backend Engineer",
+  "Product Manager",
+  "iOS Engineer",
   "Full Stack Developer",
-  "Data Science",
-  "Graphic Designer",
-  "Devops Engineer",
-  "AWS Architect",
+  "Cloud Solutions Engineer",
+  "Streaming Engineer",
+  "Research Scientist",
+  "Infrastructure Engineer",
 ];
 
 const CategoryCarousel = () => {

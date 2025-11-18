@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading, setUser } from "@/redux/authSlice";
 import { Loader2 } from "lucide-react";
+import Footer from "../shared/Footer";
 
 const Login = () => {
   const { loading, user } = useSelector((store) => store.auth);
@@ -58,7 +59,7 @@ const Login = () => {
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
+      <div className="flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 max-w-7xl mx-auto mb-24">
         <form
           onSubmit={submitHandler}
           className="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 border border-gray-200 rounded-md p-4 sm:p-6 md:p-8 my-8 shadow-sm"
@@ -139,6 +140,7 @@ const Login = () => {
           </Link>
         </span>
       </div>
+      <Footer />
     </div>
   );
 };

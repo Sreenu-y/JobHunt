@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from "@/redux/authSlice";
 import { Loader2 } from "lucide-react";
+import Footer from "../shared/Footer";
 
 const Signup = () => {
   const { loading, user } = useSelector((store) => store.auth);
@@ -72,7 +73,7 @@ const Signup = () => {
   return (
     <div>
       <Navbar />
-      <div className="flex items-center flex-col justify-center max-w-7xl mx-auto">
+      <div className="flex items-center flex-col justify-center max-w-7xl mx-auto mb-9">
         <form
           onSubmit={submitHandler}
           className="w-1/2 border border-gray-200 rounded-md p-4 my-10"
@@ -169,7 +170,7 @@ const Signup = () => {
               <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
             </Button>
           ) : (
-            <Button type="submit" className="w-full my-4">
+            <Button type="submit" className="w-full ">
               Signup
             </Button>
           )}
@@ -181,6 +182,7 @@ const Signup = () => {
           </Link>
         </span>
       </div>
+      <Footer />
     </div>
   );
 };

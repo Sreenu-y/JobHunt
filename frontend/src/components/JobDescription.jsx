@@ -9,6 +9,7 @@ import axios from "axios";
 import { APPLICATION_API_END_POINT, JOB_API_END_POINT } from "@/utils/constant";
 import { setSingleJob } from "@/redux/jobSlice";
 import { toast } from "sonner";
+import Footer from "./shared/Footer";
 
 const JobDescription = () => {
   const params = useParams();
@@ -69,7 +70,7 @@ const JobDescription = () => {
   return (
     <div>
       <Navbar />
-      <div className="max-w-7xl mx-auto my-2">
+      <div className="max-w-7xl mx-auto my-2 mb-60">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="font-bold text-xl">{singleJob?.title}</h1>
@@ -150,6 +151,7 @@ const JobDescription = () => {
           </h1>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
