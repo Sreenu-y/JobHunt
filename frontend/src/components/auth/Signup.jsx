@@ -80,7 +80,7 @@ const Signup = () => {
         >
           <h1 className="font-bold text-xl mb-5">Signup</h1>
           <div className="my-2 space-y-2">
-            <Label htmlFor="fullname">Fullname</Label>
+            <Label htmlFor="fullname">FullName</Label>
             <Input
               type="text"
               value={input.fullname}

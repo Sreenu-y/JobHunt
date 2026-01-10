@@ -19,19 +19,22 @@ const CompaniesTable = () => {
   const { companies, searchCompanyByText } = useSelector(
     (store) => store.company
   );
-  const [filterCompany, setFilterCompany] = useState(companies);
+  const [filterCompany, setFilterCompany] = useState([]);
 
   useEffect(() => {
-    const filteredCompany =
-      companies?.length != 0 &&
-      companies?.filter((company) => {
-        if (!searchCompanyByText) {
-          return true;
-        }
-        return company?.name?.toLowerCase().includes(searchCompanyByText);
-      });
+    if (!Array.isArray(companies)) {
+      setFilterCompany([]);
+      return;
+    }
+    const filteredCompany = companies?.filter((company) => {
+      if (!searchCompanyByText) {
+        return true;
+      }
+      return company?.name?.toLowerCase().includes(searchCompanyByText);
+    });
     setFilterCompany(filteredCompany);
   }, [companies, searchCompanyByText]);
+
   return (
     <div>
       <Table>
@@ -58,7 +61,7 @@ const CompaniesTable = () => {
                 </Avatar>
               </TableCell>
               <TableCell>{company?.name}</TableCell>
-              <TableCell>{company?.createdAt.split("T")[0]}</TableCell>
+              <TableCell>{company?.createdAt?.split("T")[0]}</TableCell>
               <TableCell className="text-right cursor-pointer">
                 <Popover>
                   <PopoverTrigger>
